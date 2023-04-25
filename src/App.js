@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Allproducts" element={<All_products/>}/>
-        <Route path="/Products" element={<Products carddata={carddata} setcarddata={setcarddata} />}/>
+//         <Route path="/Products" element={<Products carddata={carddata} setcarddata={setcarddata} />}/>
         <Route path="/Addtocart" element={<Addtocart carddata={carddata} setcarddata={setcarddata}/>}/>
         <Route path="*" element={<Pagenotfound />}/>
       </Routes>
