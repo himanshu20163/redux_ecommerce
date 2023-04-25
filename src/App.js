@@ -9,7 +9,7 @@ import Navbar from './Components/Navbar';
 import { useState } from 'react';
 import { createContext } from 'react';
 import Mycards from './Components/Redux/Mycards';
-import Love from './Components/Love';
+import  All_products from './Components/';
 
 
 export  const mycontext = createContext();
@@ -24,7 +24,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/love" element={<Love/>}/>
+        <Route path="/Allproducts" element={<All_products/>}/>
         <Route path="/Products" element={<Products carddata={carddata} setcarddata={setcarddata} />}/>
         <Route path="/Addtocart" element={<Addtocart carddata={carddata} setcarddata={setcarddata}/>}/>
         <Route path="*" element={<Pagenotfound />}/>
