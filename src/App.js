@@ -1,38 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
-import {Routes,Route} from 'react-router-dom';
 import Home from './Components/Home';
+import {Routes,Route, Navigate} from 'react-router-dom'
 import Products from './Components/Products';
-import Addtocart from './Components/Addtocart';
-import Pagenotfound from './Components/Pagenotfound';
-import Navbar from './Components/Navbar';
-import { useState } from 'react';
-import { createContext } from 'react';
-import Mycards from './Components/Redux/Mycards';
-import  All_products from './Components/';
+import Add_To_Cart from './Components/Add_to_cart';
+import Technologies from './Components/Technologies';
+import Html from './Components/Html';
+import Css from './Components/Css';
+import Javas from './Components/Javas';
+import Reactss from './Components/Reactss';
+import Loginform from './Components/Loginform';
+import { createContext, useState } from 'react';
+
+export const globaldata = createContext()
 
 
-export  const mycontext = createContext();
+export const localdata = createContext()
+
 function App() {
+  const [status, setstatus] = useState(false)
+ 
   
-  const [carddata,setcarddata] = useState([]);
-  const [count ,setcount] = useState(0);
-
   return (
     <div className="App">
-      <mycontext.Provider value={{count,setcount}}>
-      <Navbar />
+      <localdata.Provider value={data1}>
+      <globaldata.Provider value={data}>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/Allproducts" element={<All_products/>}/>
-//         <Route path="/Products" element={<Products carddata={carddata} setcarddata={setcarddata} />}/>
-        <Route path="/Addtocart" element={<Addtocart carddata={carddata} setcarddata={setcarddata}/>}/>
-        <Route path="*" element={<Pagenotfound />}/>
+        <Route path='/' element={status?<Navigate to="/home"/>:<Loginform setstatus={setstatus}/>}/>
+        <Route path='/home' element={status?<Home/>:<Navigate to="/"/>}/>
+        <Route path='/products' element={status?<Products/>:<Navigate to="/"/>}/>
+        <Route path='/addtocart' element={status?<Add_To_Cart/>:<Navigate to="/"/>}/>
+        <Route path='/technology' element={status?<Technologies/>:<Navigate to="/"/>}>
+        <Route path='html' element={<Html/>}/>
+        <Route path='css' element={<Css/>}/>
+        <Route path='js' element={<Javas/>}/>
+        <Route path='react' element={<Reactss/>}/>
+        </Route>
       </Routes>
-      </mycontext.Provider>
-      
+      </globaldata.Provider>
+      </localdata.Provider>
+     
+     
     </div>
   );
 }
 
 export default App;
+
+
